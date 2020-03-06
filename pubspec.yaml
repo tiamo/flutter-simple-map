@@ -1,0 +1,20 @@
+name: live_world_map
+description: A Flutter plugin for displaying a flat world map with live animated data. 
+version: 0.0.1
+author: Vladyslav Korniienko <vk.tiamo@gmail.com>
+homepage: 'https://github.com/tiamo/flutter-live-world-map'
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  assets:
+    - assets/
