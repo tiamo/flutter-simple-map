@@ -26,9 +26,7 @@ Can be used as presentation of online users.
 
 ## Features
 
-* Concentric PageView
-* Concentric Clipper
-* Concentric PageRoute
+...
 
 ## Usage
 
