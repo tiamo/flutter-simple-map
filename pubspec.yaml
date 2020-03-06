@@ -1,4 +1,4 @@
-name: live_world_map
+name: online_world_map
 description: A Flutter plugin for displaying a flat world map with live animated data. 
 version: 0.0.1
 author: Vladyslav Korniienko <vk.tiamo@gmail.com>
