@@ -26,12 +26,51 @@ Can be used as presentation of online users.
 
 ## Features
 
-...
+* Render simple customizable flat map
+* Render points with animation effect
+* Customize every point
+* Create points with TTL
+* Good performance with lot of data
+
+## TODO
+
+* Think about Stream
+* Render optimization
 
 ## Usage
 
-OWMapContainer(
-  options: OWMapOptions(),
+final mapOptions = OWMapOptions(
+    mapColor: Colors.grey,
+    bgColor: Colors.black,
+);
+
+// Simple map with single point
+OWMap(
+  controller: OWMapController(points: [
+    OWMapPoint(
+      lat: 0.0,
+      lng: 0.0,
+      color: Colors.blue,
+      ttl: Duration(seconds: 100),
+    )
+  ]),
+  options: mapOptions,
+),
+
+final OWMapController mapController = OWMapController();
+
+// Add single point.
+mapController.addPoint(OWMapPoint());
+
+// Add list of points
+mapController.points = [OWMapPoint()];
+
+// Clear the map.
+mapController.clear();
+
+OWMap(
+  controller: mapController,
+  options: mapOptions,
 ),
 
 ## Maintainers
