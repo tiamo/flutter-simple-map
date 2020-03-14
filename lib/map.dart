@@ -2,9 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-class OWMap {
-  OWMap({
-    @required this.animation,
+class OWMapController {
+  OWMapController({
     this.mapWidth = 2048,
     this.mapHeight = 2048,
     this.longitudeLeft = -180,
@@ -30,13 +29,15 @@ class OWMap {
   final Color defaultPointColor;
   final Duration defaultPointTTL;
 
-  final AnimationController animation;
+  AnimationController _animation;
 
   int _lastTimeMs = 0;
 
   List<OWMapPoint> _points;
 
   List<OWMapPoint> get points => _points;
+
+  set animation(AnimationController animation) => _animation = animation;
 
   /// Add [points] to the map
   ///
@@ -52,7 +53,7 @@ class OWMap {
     _points = _points.toSet().toList();
   }
 
-  /// Clean the map
+  /// Clear the map
   ///
   void clear() {
     _points.clear();
@@ -62,17 +63,17 @@ class OWMap {
   /// based on the [size].
   ///
   void render(Canvas canvas, Size size) {
-    if (_points == null || _points.length == 0) {
+    if (_animation == null || _points == null || _points.length == 0) {
       return;
     }
 
     final Paint paint = Paint();
 
     final double delta =
-        (animation.lastElapsedDuration.inMilliseconds - _lastTimeMs) /
+        (_animation.lastElapsedDuration.inMilliseconds - _lastTimeMs) /
             Duration.millisecondsPerSecond;
 
-    _lastTimeMs = animation.lastElapsedDuration.inMilliseconds;
+    _lastTimeMs = _animation.lastElapsedDuration.inMilliseconds;
 
     _points.removeWhere((point) => point.state == OWMapPointState.inactive);
 
@@ -84,7 +85,7 @@ class OWMap {
           paint..color = point.targetColor.withOpacity(point.opacity),
         );
 
-        /// generate shadow
+        /// Generate [point] shadow effect
         if (point.state == OWMapPointState.showing) {
           canvas.drawCircle(
             _pointOffset(point, size),
@@ -130,7 +131,7 @@ class OWMap {
         point.opacity = 1.0;
         point.targetRadius = point.radius;
         point.targetColor = point.color;
-        if (point.ttl < animation.lastElapsedDuration) {
+        if (point.ttl < _animation.lastElapsedDuration) {
           point.state = OWMapPointState.hiding;
           continue hiding;
         }
@@ -154,7 +155,7 @@ class OWMap {
     return true;
   }
 
-  /// This method convert the [point] coordinates
+  /// This method converts the [point] coordinates
   /// to map offset representation.
   ///
   Offset _pointOffset(OWMapPoint point, Size size) {
@@ -207,6 +208,9 @@ class OWMapPoint {
   Color targetColor;
   Duration ttl;
   OWMapPointState state;
+
+  /// Optimize render for a large number of points.
+  ///
   int fractionDigits;
 
   @override
