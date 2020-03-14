@@ -39,12 +39,16 @@ Can be used as presentation of online users.
 
 ## Usage
 
+* Map options example
+```
 final mapOptions = OWMapOptions(
     mapColor: Colors.grey,
     bgColor: Colors.black,
 );
+```
 
-// Simple map with single point
+* Simple map with single point
+```
 OWMap(
   controller: OWMapController(points: [
     OWMapPoint(
@@ -56,7 +60,10 @@ OWMap(
   ]),
   options: mapOptions,
 ),
+```
 
+* Map with many points
+```
 final OWMapController mapController = OWMapController();
 
 // Add single point.
@@ -72,6 +79,7 @@ OWMap(
   controller: mapController,
   options: mapOptions,
 ),
+```
 
 ## Maintainers
  
