@@ -107,6 +107,9 @@ class _MyHomePageState extends State<MyHomePage>
     int maxTTL = 120,
     Color color = Colors.blue,
   }) {
+    if (num == 0) {
+      return List();
+    }
     return List.generate(num, (index) {
       return OWMapPoint(
         lat: random.nextDouble() * (random.nextBool() ? 80 : -50),

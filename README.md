@@ -8,6 +8,8 @@ Can be used as presentation of online users.
 [![Star on GitHub](https://img.shields.io/github/stars/tiamo/flutter-online-world-map.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/tiamo/flutter-online-world-map)
 [![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
 
+![1.gif](https://github.com/tiamo/flutter-online-world-map/raw/master/example.gif)
+
 ## Getting Started
 
 * Add this to your pubspec.yaml
