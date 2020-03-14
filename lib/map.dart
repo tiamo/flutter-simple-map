@@ -15,7 +15,10 @@ class OWMapController {
     this.maxPointRadius = 4.0,
     this.defaultPointColor,
     this.defaultPointTTL,
-  });
+    points,
+  }) {
+    _points = points;
+  }
 
   final int mapWidth;
   final int mapHeight;
@@ -30,16 +33,16 @@ class OWMapController {
   final Duration defaultPointTTL;
 
   AnimationController _animation;
-
   int _lastTimeMs = 0;
-
   List<OWMapPoint> _points;
 
+  /// Get active [points]
+  ///
   List<OWMapPoint> get points => _points;
 
   set animation(AnimationController animation) => _animation = animation;
 
-  /// Add [points] to the map
+  /// Add list of [points] to the map
   ///
   set points(List<OWMapPoint> points) {
     if (_points == null) {
@@ -51,6 +54,12 @@ class OWMapController {
       _points.addAll(points);
     }
     _points = _points.toSet().toList();
+  }
+
+  /// Add new [point] to the map
+  ///
+  void addPoint(OWMapPoint point) {
+    _points.add(point);
   }
 
   /// Clear the map

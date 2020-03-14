@@ -129,6 +129,17 @@ class _MyHomePageState extends State<MyHomePage>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+//            OWMap(
+//              controller: OWMapController(points: [
+//                OWMapPoint(
+//                  lat: 0.0,
+//                  lng: 0.0,
+//                  color: Colors.blue,
+//                  ttl: Duration(seconds: 100),
+//                )
+//              ]),
+//              options: OWMapOptions(),
+//            ),
             OWMap(
               controller: _mapController,
               options: OWMapOptions(),
