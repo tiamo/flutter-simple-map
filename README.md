@@ -34,21 +34,21 @@ Can be used as presentation of online users.
 
 ## TODO
 
-* Think about Stream
+* Think about StreamController
 * Render optimization
 
 ## Usage
 
-* Map options example
-```
+* Using OWMapOptions
+```dart
 final mapOptions = OWMapOptions(
     mapColor: Colors.grey,
     bgColor: Colors.black,
 );
 ```
 
-* Simple map with single point
-```
+* Simple map with one point
+```dart
 OWMap(
   controller: OWMapController(points: [
     OWMapPoint(
@@ -62,8 +62,8 @@ OWMap(
 ),
 ```
 
-* Map with many points
-```
+* Using OWMapController
+```dart
 final OWMapController mapController = OWMapController();
 
 // Add single point.
@@ -80,6 +80,8 @@ OWMap(
   options: mapOptions,
 ),
 ```
+
+* Check out the complete [Example](https://github.com/tiamo/flutter-online-world-map/tree/master/example)
 
 ## Maintainers
  
