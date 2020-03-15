@@ -59,13 +59,19 @@ class OWMapController {
   /// Add new [point] to the map
   ///
   void addPoint(OWMapPoint point) {
-    _points.add(point);
+    if (_points == null) {
+      _points = [point];
+    } else {
+      _points.add(point);
+    }
   }
 
   /// Clear the map
   ///
   void clear() {
-    _points.clear();
+    if (_points != null) {
+      _points.clear();
+    }
   }
 
   /// This method render [points] on the [canvas]

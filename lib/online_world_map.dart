@@ -14,7 +14,7 @@ class OWMapOptions {
   OWMapOptions({
     this.imageAsset = 'packages/online_world_map/assets/world_map.png',
     this.mapColor = const Color(0xFFCDD0D7),
-    this.bgColor = const Color(0xFFEEEEEE),
+    this.bgColor = Colors.transparent,
   });
 }
 
