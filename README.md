@@ -1,7 +1,7 @@
-# Online World Map
+# Flutter Simple Map
 
-A Flutter plugin for displaying a flat world map with realtime animated points. 
-Can be used as presentation of online users.
+A Flutter plugin for displaying a simple flat world map with realtime animated points. 
+Can be used as presentation of online users, etc.
 
 [![Build Status](https://travis-ci.org/tiamo/flutter-online-world-map.svg?branch=master)](https://travis-ci.org/tiamo/flutter-online-world-map)
 [![Pub package](https://img.shields.io/pub/v/online_world_map.svg)](https://pub.dartlang.org/packages/online_world_map)
@@ -15,7 +15,7 @@ Can be used as presentation of online users.
 * Add this to your pubspec.yaml
   ```
   dependencies:
-  online_world_map: ^0.0.1
+  simple_map: ^0.0.1
   ```
 * Get the package from Pub:
   ```
@@ -23,7 +23,7 @@ Can be used as presentation of online users.
   ```
 * Import it in your file
   ```
-  import 'package:online_world_map/online_world_map.dart';
+  import 'package:simple_map/simple_map.dart';
   ```
 
 ## Features
@@ -43,7 +43,7 @@ Can be used as presentation of online users.
 
 * Using OWMapOptions
 ```dart
-final mapOptions = OWMapOptions(
+final mapOptions = SimpleMapOptions(
     mapColor: Colors.grey,
     bgColor: Colors.black,
 );
@@ -51,9 +51,9 @@ final mapOptions = OWMapOptions(
 
 * Simple map with one point
 ```dart
-OWMap(
-  controller: OWMapController(points: [
-    OWMapPoint(
+SimpleMap(
+  controller: SimpleMapController(points: [
+    SimpleMapPoint(
       lat: 0.0,
       lng: 0.0,
       color: Colors.blue,
@@ -64,20 +64,20 @@ OWMap(
 ),
 ```
 
-* Using OWMapController
+* Using SimpleMapController
 ```dart
-final OWMapController mapController = OWMapController();
+final SimpleMapController mapController = SimpleMapController();
 
 // Add single point.
-mapController.addPoint(OWMapPoint());
+mapController.addPoint(SimpleMapPoint());
 
 // Add list of points
-mapController.points = [OWMapPoint()];
+mapController.points = [SimpleMapPoint()];
 
 // Clear the map.
 mapController.clear();
 
-OWMap(
+SimpleMap(
   controller: mapController,
   options: mapOptions,
 ),

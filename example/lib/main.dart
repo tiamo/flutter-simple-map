@@ -1,9 +1,10 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:online_world_map/map.dart';
-import 'package:online_world_map/online_world_map.dart';
+import 'package:flutter/services.dart';
+import 'package:simple_map/simple_map.dart';
 import 'package:wakelock/wakelock.dart';
 
 void main() {
@@ -12,11 +13,11 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Online World Map Demo',
+      title: 'Flutter Simple Map Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -38,15 +39,23 @@ class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
   static Random random = Random();
 
-  OWMapController _mapController;
+  SimpleMapOptions _mapOptions;
+  SimpleMapController _mapController;
 
   Ticker _ticker;
 
+  List<dynamic> _points = [];
+
   @override
   void initState() {
-    _mapController = OWMapController();
-//    generateRandomPoints(100);
+    _mapOptions = SimpleMapOptions();
+    _mapController = SimpleMapController();
     initRealtimeTicker();
+
+    loadPoints().then((points) {
+      _points = points;
+      generateRandomPoints(1000);
+    });
 
     super.initState();
   }
@@ -71,6 +80,11 @@ class _MyHomePageState extends State<MyHomePage>
     });
   }
 
+  Future<List> loadPoints() async {
+    String points = await rootBundle.loadString('assets/points.json');
+    return json.decode(points);
+  }
+
   @override
   void dispose() {
     _ticker?.dispose();
@@ -79,43 +93,26 @@ class _MyHomePageState extends State<MyHomePage>
 
   void generateRandomPoints(int num) {
     assert(_mapController != null);
-    final List<OWMapPoint> points = generatePoints(random.nextInt(num));
-
-//    points.add(OWMapPoint(
-//      lat: -34.356586,
-//      lng: 18.473981,
-//      radius: 1.0,
-//      color: Colors.red,
-//      ttl: Duration(hours: 1),
-//      fractionDigits: 5,
-//    ));
-//
-//    points.add(OWMapPoint(
-//      lat: 0.0,
-//      lng: 0.0,
-//      radius: 2.0,
-//      color: Colors.black,
-//      ttl: Duration(hours: 1),
-//      fractionDigits: 5,
-//    ));
+    final List<SimpleMapPoint> points = generatePoints(random.nextInt(num));
 
     _mapController.points = points;
   }
 
-  List<OWMapPoint> generatePoints(
+  List<SimpleMapPoint> generatePoints(
     int num, {
     int maxTTL = 120,
     Color color = Colors.blue,
   }) {
-    if (num == 0) {
+    if (num <= 0 || _points.length == 0) {
       return List();
     }
     return List.generate(num, (index) {
-      return OWMapPoint(
-        lat: random.nextDouble() * (random.nextBool() ? 80 : -50),
-        lng: random.nextDouble() * (random.nextBool() ? 180 : -180),
+      var p = _points[random.nextInt(_points.length)];
+      return SimpleMapPoint(
+        lat: double.tryParse(p[0]),
+        lng: double.tryParse(p[1]),
         color: color,
-        ttl: Duration(seconds: random.nextInt(maxTTL)),
+        ttl: Duration(seconds: random.nextInt(maxTTL) + 5),
       );
     });
   }
@@ -126,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Live Map Demo'),
+        title: Text('Simple Map Demo'),
       ),
       body: Center(
         child: Column(
@@ -143,9 +140,9 @@ class _MyHomePageState extends State<MyHomePage>
 //              ]),
 //              options: OWMapOptions(),
 //            ),
-            OWMap(
+            SimpleMap(
               controller: _mapController,
-              options: OWMapOptions(),
+              options: _mapOptions,
             ),
           ],
         ),
@@ -168,7 +165,7 @@ class _MyHomePageState extends State<MyHomePage>
       ],
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          generateRandomPoints(random.nextInt(10));
+          generateRandomPoints(random.nextInt(10) + 1);
         },
         tooltip: 'Add random points',
         child: Icon(Icons.add),

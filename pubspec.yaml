@@ -1,8 +1,8 @@
-name: online_world_map
-description: A Flutter plugin for displaying a flat world map with realtime animated points.
-version: 0.0.1
+name: simple_map
+description: A Flutter plugin for displaying a simple flat world map with animated points.
+version: 0.0.2
 author: Vladyslav Korniienko <vk.tiamo@gmail.com>
-homepage: 'https://github.com/tiamo/flutter-online-world-map'
+homepage: 'https://github.com/tiamo/flutter-simple-map'
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
