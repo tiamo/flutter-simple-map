@@ -1,7 +1,6 @@
 name: simple_map
 description: A Flutter plugin for displaying a simple flat world map with animated points.
 version: 0.0.2
-author: Vladyslav Korniienko <vk.tiamo@gmail.com>
 homepage: 'https://github.com/tiamo/flutter-simple-map'
 
 environment:
