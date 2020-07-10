@@ -4,7 +4,7 @@ A Flutter plugin for displaying a simple flat world map with realtime animated p
 Can be used as presentation of online users, etc.
 
 [![Build Status](https://travis-ci.org/tiamo/flutter-simple-map.svg?branch=master)](https://travis-ci.org/tiamo/flutter-simple-map)
-[![Pub package](https://img.shields.io/pub/v/simple_map.svg)](https://pub.dartlang.org/packages/online_world_map)
+[![Pub package](https://img.shields.io/pub/v/simple_map.svg)](https://pub.dartlang.org/packages/simple_map)
 [![Star on GitHub](https://img.shields.io/github/stars/tiamo/flutter-simple-map.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/tiamo/flutter-simple-map)
 [![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
 
