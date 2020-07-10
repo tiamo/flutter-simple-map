@@ -3,13 +3,13 @@
 A Flutter plugin for displaying a simple flat world map with realtime animated points. 
 Can be used as presentation of online users, etc.
 
-[![Build Status](https://travis-ci.org/tiamo/flutter-online-world-map.svg?branch=master)](https://travis-ci.org/tiamo/flutter-online-world-map)
-[![Pub package](https://img.shields.io/pub/v/online_world_map.svg)](https://pub.dartlang.org/packages/online_world_map)
-[![Star on GitHub](https://img.shields.io/github/stars/tiamo/flutter-online-world-map.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/tiamo/flutter-online-world-map)
+[![Build Status](https://travis-ci.org/tiamo/flutter-simple-map.svg?branch=master)](https://travis-ci.org/tiamo/flutter-simple-map)
+[![Pub package](https://img.shields.io/pub/v/simple_map.svg)](https://pub.dartlang.org/packages/online_world_map)
+[![Star on GitHub](https://img.shields.io/github/stars/tiamo/flutter-simple-map.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/tiamo/flutter-simple-map)
 [![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
 
-![1.gif](https://github.com/tiamo/flutter-online-world-map/raw/master/screens/1.gif)
-![2.gif](https://github.com/tiamo/flutter-online-world-map/raw/master/screens/2.gif)
+![1.gif](https://github.com/tiamo/flutter-simple-map/raw/master/screens/1.gif)
+![2.gif](https://github.com/tiamo/flutter-simple-map/raw/master/screens/2.gif)
 
 ## Getting Started
 
@@ -86,7 +86,7 @@ SimpleMap(
 ),
 ```
 
-* Check out the complete [Example](https://github.com/tiamo/flutter-online-world-map/tree/master/example)
+* Check out the complete [Example](https://github.com/tiamo/flutter-simple-map/tree/master/example)
 
 ## Changelog
 
