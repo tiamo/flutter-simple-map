@@ -8,14 +8,15 @@ Can be used as presentation of online users, etc.
 [![Star on GitHub](https://img.shields.io/github/stars/tiamo/flutter-online-world-map.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/tiamo/flutter-online-world-map)
 [![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
 
-![1.gif](https://github.com/tiamo/flutter-online-world-map/raw/master/example.gif)
+![1.gif](https://github.com/tiamo/flutter-online-world-map/raw/master/screens/1.gif)
+![2.gif](https://github.com/tiamo/flutter-online-world-map/raw/master/screens/2.gif)
 
 ## Getting Started
 
 * Add this to your pubspec.yaml
   ```
   dependencies:
-  simple_map: ^0.0.1
+  simple_map: ^0.0.2
   ```
 * Get the package from Pub:
   ```
@@ -41,27 +42,14 @@ Can be used as presentation of online users, etc.
 
 ## Usage
 
-* Using OWMapOptions
+* Using SimpleMapOptions
 ```dart
 final mapOptions = SimpleMapOptions(
+    // You can use your own map image
+    mapAsset: 'assets/map.png',
     mapColor: Colors.grey,
     bgColor: Colors.black,
 );
-```
-
-* Simple map with one point
-```dart
-SimpleMap(
-  controller: SimpleMapController(points: [
-    SimpleMapPoint(
-      lat: 0.0,
-      lng: 0.0,
-      color: Colors.blue,
-      ttl: Duration(seconds: 100),
-    )
-  ]),
-  options: mapOptions,
-),
 ```
 
 * Using SimpleMapController
@@ -83,7 +71,26 @@ SimpleMap(
 ),
 ```
 
+* Simple map with one center point with duration of 100 seconds
+```dart
+SimpleMap(
+  controller: SimpleMapController(points: [
+    SimpleMapPoint(
+      lat: 0.0,
+      lng: 0.0,
+      color: Colors.blue,
+      ttl: Duration(seconds: 100),
+    )
+  ]),
+  options: mapOptions,
+),
+```
+
 * Check out the complete [Example](https://github.com/tiamo/flutter-online-world-map/tree/master/example)
+
+## Changelog
+
+Please have a look in [CHANGELOG](CHANGELOG.md)
 
 ## Maintainers
  
