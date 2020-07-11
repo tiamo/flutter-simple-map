@@ -16,7 +16,7 @@ Can be used as a presentation of online users, etc.
 * Add this to your pubspec.yaml
   ```
   dependencies:
-  simple_map: ^0.0.2
+  simple_map: ^0.1.0
   ```
 * Get the package from Pub:
   ```
