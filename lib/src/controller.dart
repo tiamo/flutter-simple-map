@@ -9,6 +9,8 @@ class SimpleMapController {
     this.showSpeedRate = 0.9,
     this.hideSpeedRate = 0.9,
     this.maxPointRadius = 4.0,
+    this.shadowRatio = 1.5,
+    this.shadowOpacity = 0.3,
     this.defaultPointColor,
     this.defaultPointTTL,
     points,
@@ -19,6 +21,8 @@ class SimpleMapController {
   final double showSpeedRate;
   final double hideSpeedRate;
   final double maxPointRadius;
+  final double shadowRatio;
+  final double shadowOpacity;
   final Color defaultPointColor;
   final Duration defaultPointTTL;
 
@@ -80,11 +84,13 @@ class SimpleMapController {
 
     final Paint paint = Paint();
 
-    final double delta =
-        (_animation.lastElapsedDuration.inMilliseconds - _lastTimeMs) /
-            Duration.millisecondsPerSecond;
+    final int _newLastTimeMs =
+        _animation.lastElapsedDuration?.inMilliseconds ?? 0;
 
-    _lastTimeMs = _animation.lastElapsedDuration.inMilliseconds;
+    final double delta =
+        (_newLastTimeMs - _lastTimeMs) / Duration.millisecondsPerSecond;
+
+    _lastTimeMs = _newLastTimeMs;
 
     _points.removeWhere((point) => point.state == SimpleMapPointState.inactive);
 
@@ -100,8 +106,8 @@ class SimpleMapController {
         if (point.state == SimpleMapPointState.showing) {
           canvas.drawCircle(
             _projection.project(point, size),
-            point.targetRadius * 1.5, // TODO: config
-            paint..color = point.targetColor.withOpacity(0.3),
+            point.targetRadius * shadowRatio,
+            paint..color = point.targetColor.withOpacity(shadowOpacity),
           );
         }
       }
@@ -142,7 +148,8 @@ class SimpleMapController {
         point.opacity = 1.0;
         point.targetRadius = point.radius;
         point.targetColor = point.color;
-        if (point.ttl < _animation.lastElapsedDuration) {
+        if (_animation.lastElapsedDuration != null &&
+            point.ttl < _animation.lastElapsedDuration) {
           point.state = SimpleMapPointState.hiding;
           continue hiding;
         }
