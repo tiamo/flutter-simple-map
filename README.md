@@ -1,7 +1,7 @@
 # Flutter Simple Map
 
 Flutter plugin to display a simple flat world map with animated points in real time.
-Can be used as a presentation of online users, etc.
+Can be used as a presentation of online users, devices, etc.
 
 [![Build Status](https://travis-ci.org/tiamo/flutter-simple-map.svg?branch=master)](https://travis-ci.org/tiamo/flutter-simple-map)
 [![Pub package](https://img.shields.io/pub/v/simple_map.svg)](https://pub.dartlang.org/packages/simple_map)
