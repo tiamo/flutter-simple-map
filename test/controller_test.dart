@@ -3,7 +3,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:simple_map/simple_map.dart';
 
-class MockCanvas extends Mock implements Canvas {}
+class MockCanvas extends Mock implements Canvas {
+  @override
+  void drawCircle(Offset? c, double? radius, Paint? paint) {
+    super.noSuchMethod(Invocation.method(#drawCircle, [c, radius, paint]));
+  }
+}
 
 void main() {
   final animation = AnimationController(
@@ -25,21 +30,26 @@ void main() {
   });
 
   test('test render', () async {
-    final controller = SimpleMapController(points: [
-      SimpleMapPoint(
-        lat: 0,
-        lng: 0,
-        color: Color(0xFFFFFFFF),
-      )
-    ]);
+    final controller = SimpleMapController(
+      points: [
+        SimpleMapPoint(
+          lat: 0,
+          lng: 0,
+          color: Color(0xFFFFFFFF),
+        )
+      ],
+    );
 
-    Canvas canvas = MockCanvas();
-    Size size = Size(100, 100);
+    final canvas = MockCanvas();
+    final size = Size.square(100);
 
-    controller.configure(options: options, animation: animation);
+    controller.configure(
+      options: options,
+      animation: animation,
+    );
 
     controller.render(canvas, size);
-    verify(canvas.drawCircle(Offset.zero, 0, Paint())).called(2);
+    verify(canvas.drawCircle(any, any, any)).called(2);
 
     controller.addPoint(
       SimpleMapPoint(
@@ -51,6 +61,6 @@ void main() {
     );
 
     controller.render(canvas, size);
-    verify(canvas.drawCircle(Offset.zero, 0, Paint())).called(3);
+    verify(canvas.drawCircle(any, any, any)).called(3);
   });
 }

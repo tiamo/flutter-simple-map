@@ -259,10 +259,6 @@ class SimpleMapController {
   /// based on the [size].
   ///
   void render(Canvas canvas, Size size) {
-    if (_state == null) {
-      throw Exception('Please use `controller.configure` before render.');
-    }
-
     var delta = 0.0;
     if (_animation != null) {
       final _newLastTimeMs =
