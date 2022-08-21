@@ -8,8 +8,10 @@ Can be used as a presentation of online users, devices, etc.
 [![Star on GitHub](https://img.shields.io/github/stars/tiamo/flutter-simple-map.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/tiamo/flutter-simple-map)
 [![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
 
-![1.gif](https://github.com/tiamo/flutter-simple-map/raw/master/screens/1.gif)
-![2.gif](https://github.com/tiamo/flutter-simple-map/raw/master/screens/2.gif)
+![1](https://github.com/tiamo/flutter-simple-map/raw/master/screens/1.gif)
+![2](https://github.com/tiamo/flutter-simple-map/raw/master/screens/2.gif)
+![3](https://github.com/tiamo/flutter-simple-map/raw/master/screens/3.gif)
+![4](https://github.com/tiamo/flutter-simple-map/raw/master/screens/4.gif)
 
 ## Getting Started
 
