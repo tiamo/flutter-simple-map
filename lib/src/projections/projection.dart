@@ -1,11 +1,9 @@
-import 'dart:ui';
-
-import '../point.dart';
+import 'package:flutter/widgets.dart';
 
 abstract class SimpleMapProjection {
   ///
-  /// This method converts the [point] coordinates
+  /// This method converts the [lat] and [lng] coordinates
   /// to map offset representation.
   ///
-  Offset project(SimpleMapPoint point, Size size);
+  Offset project(double? lat, double? lng, Size? size);
 }

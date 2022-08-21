@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'dart:ui';
 
-import '../point.dart';
 import 'projection.dart';
 
 class MercatorProjection implements SimpleMapProjection {
@@ -21,15 +20,16 @@ class MercatorProjection implements SimpleMapProjection {
     this.offsetPrimeMeridian = -62,
   });
 
-  Offset project(SimpleMapPoint point, Size size) {
-    double ratio = size.width / mapWidth;
-    double latRad = (point.lat * pi) / 180;
+  @override
+  Offset project(double? lat, double? lng, Size? size) {
+    final ratio = size!.width / mapWidth;
+    final latRad = (lat! * pi) / 180;
 
-    double g = log(tan(pi / 4 + latRad / 2));
-    int lonOffset = longitudeRight - longitudeLeft;
+    final g = log(tan(pi / 4 + latRad / 2));
+    final lonOffset = longitudeRight - longitudeLeft;
 
-    double dx = (point.lng - longitudeLeft) * (mapWidth / lonOffset);
-    double dy = mapHeight / 2 - (mapHeight * g) / (2 * pi);
+    var dx = (lng! - longitudeLeft) * (mapWidth / lonOffset);
+    var dy = mapHeight / 2 - (mapHeight * g) / (2 * pi);
 
     dx += offsetPrimeMeridian;
     dy += offsetEquator;

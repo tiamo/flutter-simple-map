@@ -1,35 +1,35 @@
 import 'dart:math';
 import 'dart:ui';
 
-import '../point.dart';
 import 'projection.dart';
 
 class MillerProjection implements SimpleMapProjection {
+  const MillerProjection({
+    this.mapWidth = 1080,
+    this.mapHeight = 1080,
+    this.offsetPrimeMeridian = -105,
+    this.offsetEquator = 200,
+  });
+
   final int mapWidth;
   final int mapHeight;
   final int offsetEquator;
   final int offsetPrimeMeridian;
 
-  const MillerProjection({
-    this.mapWidth = 1080,
-    this.mapHeight = 1080,
-    this.offsetEquator = -200,
-    this.offsetPrimeMeridian = -36,
-  });
-
-  _toRadian(v) {
+  dynamic _toRadian(v) {
     return (v * pi) / 180;
   }
 
-  Offset project(SimpleMapPoint point, Size size) {
-    double scale = mapWidth / pi / 2;
-    double ratio = size.width / mapWidth;
+  @override
+  Offset project(double? lat, double? lng, Size? size) {
+    final scale = mapWidth / pi / 2;
+    final ratio = size!.width / mapWidth;
 
-    double lat = _toRadian(point.lat);
-    double lng = _toRadian(point.lng);
+    final double latRad = _toRadian(lat);
+    final double lngRad = _toRadian(lng);
 
-    double x = lng;
-    double y = -1.25 * log(tan(pi / 4 + 0.4 * lat));
+    var x = lngRad;
+    var y = -1.25 * log(tan(pi / 4 + 0.4 * latRad));
 
     x *= scale;
     y *= scale;

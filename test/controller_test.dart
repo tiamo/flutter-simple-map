@@ -11,15 +11,17 @@ void main() {
     vsync: const TestVSync(),
   );
 
+  final options = SimpleMapOptions();
+
   test('test addPoint & clear', () {
     final controller = SimpleMapController();
     controller.addPoint(SimpleMapPoint(lat: 0, lng: 0));
 
-    expect(controller.points.length, 1);
+    expect(controller.points?.length, 1);
 
     controller.clear();
 
-    expect(controller.points.length, 0);
+    expect(controller.points?.length, 0);
   });
 
   test('test render', () async {
@@ -31,13 +33,13 @@ void main() {
       )
     ]);
 
-    controller.animation = animation;
-
     Canvas canvas = MockCanvas();
     Size size = Size(100, 100);
 
+    controller.configure(options: options, animation: animation);
+
     controller.render(canvas, size);
-    verify(canvas.drawCircle(any, any, any)).called(2);
+    verify(canvas.drawCircle(Offset.zero, 0, Paint())).called(2);
 
     controller.addPoint(
       SimpleMapPoint(
@@ -49,6 +51,6 @@ void main() {
     );
 
     controller.render(canvas, size);
-    verify(canvas.drawCircle(any, any, any)).called(3);
+    verify(canvas.drawCircle(Offset.zero, 0, Paint())).called(3);
   });
 }

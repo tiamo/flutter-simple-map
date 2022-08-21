@@ -8,36 +8,49 @@ enum SimpleMapPointState {
   inactive,
 }
 
+mixin SimpleMapPointAnimator {
+  void render({
+    required SimpleMapPoint point,
+    required Animation<double> animation,
+    required Canvas canvas,
+    required Offset center,
+  });
+}
+
 class SimpleMapPoint {
   SimpleMapPoint({
     this.lat = 0.0,
     this.lng = 0.0,
     this.radius = 1.0,
     this.opacity = 1.0,
-    this.color = Colors.black54,
+    this.color,
     this.ttl = Duration.zero,
     this.state = SimpleMapPointState.idle,
     this.fractionDigits = 1,
-  })  : assert(lat != null),
-        assert(lng != null);
 
-  double lat;
+    /// Point showing effect animator
+    this.animator,
+  });
+
+  final double lat;
   double lng;
   double radius;
   double targetRadius = 1.0;
   double opacity;
-  Color color;
-  Color targetColor;
-  Duration ttl;
+  Color? color;
+  Color? targetColor;
+  Duration? ttl;
   SimpleMapPointState state;
+  SimpleMapPointAnimator? animator;
 
+  ///
   /// Optimize render for a large number of points.
   ///
   int fractionDigits;
 
   @override
   String toString() {
-    return '$runtimeType {lat: $lat, lng: $lng, radius: $radius, color: $color}';
+    return '$runtimeType {state: $state, lat: $lat, lng: $lng, radius: $radius, targetRadius: $targetRadius, color: $color, ttl: $ttl}';
   }
 
   @override
