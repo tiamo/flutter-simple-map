@@ -48,7 +48,9 @@ class _MyHomePageState extends State<MyHomePage>
 
   @override
   void initState() {
-    _mapOptions = SimpleMapOptions();
+    _mapOptions = SimpleMapOptions(
+      pointColor: Colors.blue,
+    );
     _mapController = SimpleMapController();
     initRealtimeTicker();
 
@@ -104,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage>
     Color color = Colors.blue,
   }) {
     if (num <= 0 || _points.length == 0) {
-      return List();
+      return [];
     }
     return List.generate(num, (index) {
       var p = _points[random.nextInt(_points.length)];
@@ -113,6 +115,7 @@ class _MyHomePageState extends State<MyHomePage>
         lng: double.tryParse(p[1]),
         color: color,
         ttl: Duration(seconds: random.nextInt(maxTTL) + 5),
+        animator: random.nextInt(3) == 1 ? RayMapPointAnimator() : null,
       );
     });
   }
@@ -125,24 +128,17 @@ class _MyHomePageState extends State<MyHomePage>
       appBar: AppBar(
         title: Text('Simple Map Demo'),
       ),
+      backgroundColor: Color(0xffff9f9f9),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-//            OWMap(
-//              controller: OWMapController(points: [
-//                OWMapPoint(
-//                  lat: 0.0,
-//                  lng: 0.0,
-//                  color: Colors.blue,
-//                  ttl: Duration(seconds: 100),
-//                )
-//              ]),
-//              options: OWMapOptions(),
-//            ),
-            SimpleMap(
-              controller: _mapController,
-              options: _mapOptions,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: SimpleMap(
+                controller: _mapController,
+                options: _mapOptions,
+              ),
             ),
           ],
         ),
@@ -163,12 +159,44 @@ class _MyHomePageState extends State<MyHomePage>
           },
         ),
       ],
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          generateRandomPoints(random.nextInt(10) + 1);
-        },
-        tooltip: 'Add random points',
-        child: Icon(Icons.add),
+      floatingActionButton: Wrap(
+        spacing: 10,
+        children: [
+          FloatingActionButton(
+            onPressed: () {
+              generateRandomPoints(random.nextInt(10) + 1);
+            },
+            tooltip: 'Add random points',
+            child: Icon(Icons.add_circle),
+          ),
+          FloatingActionButton(
+            onPressed: () {
+              _mapController.flyTo(0, 0, zoom: 5.0);
+            },
+            tooltip: 'Zoom In',
+            child: Icon(Icons.zoom_in),
+          ),
+          FloatingActionButton(
+            onPressed: () {
+              final point = generatePoints(1)[0];
+              _mapController.addMarker(
+                SimpleMapMarker(
+                  lat: point.lat,
+                  lng: point.lng,
+                  color:
+                      Colors.primaries[random.nextInt(Colors.primaries.length)],
+                  image: NetworkImage(
+                    'https://avatars.githubusercontent.com/u/1963342?s=50',
+                    // 'https://avatars.githubusercontent.com/u/14101776?s=50',
+                  ),
+                ),
+              );
+            },
+            tooltip: 'Add marker',
+            child: Icon(Icons.add_card),
+            backgroundColor: Colors.deepOrangeAccent,
+          ),
+        ],
       ),
     );
   }

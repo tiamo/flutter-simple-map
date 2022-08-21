@@ -1,4 +1,4 @@
-# example
+# Flutter Simple Map Example
 
 A new Flutter project.
 
