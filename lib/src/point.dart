@@ -8,15 +8,6 @@ enum SimpleMapPointState {
   inactive,
 }
 
-mixin SimpleMapPointAnimator {
-  void render({
-    required SimpleMapPoint point,
-    required Animation<double> animation,
-    required Canvas canvas,
-    required Offset center,
-  });
-}
-
 class SimpleMapPoint {
   SimpleMapPoint({
     this.lat = 0.0,
@@ -27,26 +18,41 @@ class SimpleMapPoint {
     this.ttl = Duration.zero,
     this.state = SimpleMapPointState.idle,
     this.fractionDigits = 1,
-
-    /// Point showing effect animator
     this.animator,
   });
 
+  /// Point `latitude` coordinate
   final double lat;
-  double lng;
-  double radius;
-  double targetRadius = 1.0;
-  double opacity;
-  Color? color;
-  Color? targetColor;
-  Duration? ttl;
-  SimpleMapPointState state;
-  SimpleMapPointAnimator? animator;
 
-  ///
+  /// Point `longitude` coordinate
+  final double lng;
+
+  /// Point radius
+  double radius;
+
+  /// Point radius used in animation
+  double targetRadius = 1.0;
+
+  /// Point opacity
+  double opacity;
+
+  /// Point color
+  Color? color;
+
+  /// Point color used in animation
+  Color? targetColor;
+
+  /// Point time to live [Duration]
+  Duration? ttl;
+
+  /// Point state
+  SimpleMapPointState state;
+
+  /// Point showing effect animator
+  final SimpleMapPointAnimator? animator;
+
   /// Optimize render for a large number of points.
-  ///
-  int fractionDigits;
+  final int fractionDigits;
 
   @override
   String toString() {
@@ -71,4 +77,16 @@ class SimpleMapPoint {
         lng.toStringAsFixed(fractionDigits).hashCode ^
         radius.hashCode;
   }
+}
+
+///
+/// Point render animator used in animation
+///
+abstract class SimpleMapPointAnimator {
+  void render({
+    required SimpleMapPoint point,
+    required Animation<double> animation,
+    required Canvas canvas,
+    required Offset center,
+  });
 }

@@ -16,18 +16,36 @@ class SimpleMapController {
     this.defaultPointTTL,
     this.radiusScaleFactors,
     this.glowRadius = 0.0,
+    this.maxZoom = 7.0,
     points,
   }) : _points = points;
 
+  /// [Point] showing animation speed factor
   final double showSpeedRate;
+
+  /// [Point] hiding animation speed factor
   final double hideSpeedRate;
+
+  /// The maximum [Point] radius
   final double maxPointRadius;
+
+  /// [Point] shadow ratio
   final double shadowRatio;
+
+  /// [Point] shadow opacity
   final double shadowOpacity;
+
+  /// Default point time to live duration
   final Duration? defaultPointTTL;
+
+  /// [Point] glow effect radius
   final double glowRadius;
 
-  /// pointsSize > radiusFactor
+  /// The maximum zoom of the map, used in [flyTo] animation
+  final double maxZoom;
+
+  /// Automatic [Point] radius based on [points.length]
+  ///   Example: {0: 1.7, 25: 1.4, 50: 1.2, 100: 1.0}
   final Map<int, double>? radiusScaleFactors;
 
   double initialZoom = 1.0;
@@ -38,7 +56,6 @@ class SimpleMapController {
   Color? _defaultPointColor;
   Color? _startPointColor;
   int _lastTimeMs = 0;
-  double _maxZoom = 0.0;
 
   Offset? _tCenter;
   double _tZoom = 0.0;
@@ -53,17 +70,12 @@ class SimpleMapController {
 
   SimpleMapProjection _projection = const MillerProjection();
 
-  ///
-  /// Get active points list
-  ///
+  /// Active points list
   List<SimpleMapPoint>? get points => _points;
 
-  ///
-  /// Get active markers list
-  ///
+  /// Active markers list
   List<SimpleMapMarker> get markers => _markers;
 
-  bool get isBusy => false;
   double get zoom => _zoomAnim?.value ?? initialZoom;
   Offset get center => _centerAnim?.value ?? Offset.zero;
   Offset get translation => _offsetAnim?.value ?? Offset.zero;
@@ -140,7 +152,7 @@ class SimpleMapController {
     double zoom = 10,
     Duration duration = const Duration(milliseconds: 1500),
   }) async {
-    _tZoom = min(_maxZoom, zoom);
+    _tZoom = min(maxZoom, zoom);
     _tCenter = project(lat, lng);
     _updateAnim();
     if (_transformAnimation != null) {
@@ -195,7 +207,6 @@ class SimpleMapController {
     State<SimpleMap>? state,
   }) {
     _state = state;
-    _maxZoom = options.maxZoom;
     _defaultPointColor = options.pointColor ?? _defaultPointColor;
     _startPointColor = options.startPointColor ?? _startPointColor;
     _projection = options.projection;

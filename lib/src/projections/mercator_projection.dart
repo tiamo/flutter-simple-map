@@ -4,13 +4,6 @@ import 'dart:ui';
 import 'projection.dart';
 
 class MercatorProjection implements SimpleMapProjection {
-  final int mapWidth;
-  final int mapHeight;
-  final int longitudeLeft;
-  final int longitudeRight;
-  final int offsetEquator;
-  final int offsetPrimeMeridian;
-
   const MercatorProjection({
     this.mapWidth = 2048,
     this.mapHeight = 2048,
@@ -19,6 +12,13 @@ class MercatorProjection implements SimpleMapProjection {
     this.offsetEquator = 236,
     this.offsetPrimeMeridian = -62,
   });
+
+  final int mapWidth;
+  final int mapHeight;
+  final int longitudeLeft;
+  final int longitudeRight;
+  final int offsetEquator;
+  final int offsetPrimeMeridian;
 
   @override
   Offset project(double? lat, double? lng, Size? size) {

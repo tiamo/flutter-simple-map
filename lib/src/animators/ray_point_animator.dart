@@ -3,7 +3,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/widgets.dart';
 import 'package:simple_map/simple_map.dart';
 
-class RayMapPointAnimator with SimpleMapPointAnimator {
+class RayMapPointAnimator implements SimpleMapPointAnimator {
   @override
   void render({
     required SimpleMapPoint point,

@@ -1,18 +1,29 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
+const _kColorWhite = const Color(0xFFFFFFFF);
 
 class SimpleMapMarker {
   const SimpleMapMarker({
     this.lat = 0.0,
     this.lng = 0.0,
     this.radius = 10.0,
-    this.color = Colors.white,
+    this.color = _kColorWhite,
     this.image,
   });
 
+  /// Latitude
   final double lat;
+
+  /// Longitude
   final double lng;
+
+  /// Marker radius
   final double radius;
+
+  /// Marker color
   final Color color;
+
+  /// Marker image
   final ImageProvider? image;
 
   @override
@@ -22,11 +33,12 @@ class SimpleMapMarker {
 }
 
 class SimpleMarkerPainter extends CustomPainter {
-  final Color color;
-
-  SimpleMarkerPainter({
-    this.color = Colors.white,
+  const SimpleMarkerPainter({
+    this.color = _kColorWhite,
   });
+
+  /// Marker background color
+  final Color color;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -99,7 +111,7 @@ Widget defaultMarkerBuilder(SimpleMapMarker m, Offset offset) {
                 ? DecorationImage(image: m.image!, fit: BoxFit.cover)
                 : null,
             shape: BoxShape.circle,
-            color: Color(0x88ffffff),
+            color: _kColorWhite.withOpacity(0.7),
           ),
         )
       ],

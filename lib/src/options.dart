@@ -20,21 +20,35 @@ class SimpleMapOptions {
     this.withShadow = true,
     this.shadowOffset = const Offset(0.0, 0.5),
     this.markerBuilder,
-    this.maxZoom = 7.0,
   });
 
+  /// Map projection
   final SimpleMapProjection projection;
+
+  /// Map's vector representation based on [IconData]
   final IconData mapIcon;
+
+  /// The color of the map
   final Color mapColor;
+
+  /// The color of the map canvas
   final Color bgColor;
+
+  /// The color of the map's point
   final Color? pointColor;
+
+  /// The start color of the map's point animation
   final Color? startPointColor;
+
+  /// Marker builder
   final Widget Function(SimpleMapMarker, Offset)? markerBuilder;
-  final double maxZoom;
 
-  final bool interactive;
-
-  /// 3D effect
+  /// 3D effect (based on map shadow)
   final bool withShadow;
+
+  /// The map's shadow offset
   final Offset shadowOffset;
+
+  /// Enable map animation
+  final bool interactive;
 }

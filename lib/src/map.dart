@@ -16,7 +16,10 @@ class SimpleMap extends StatefulWidget {
     required this.controller,
   }) : super(key: key);
 
+  /// [SimpleMap] options
   final SimpleMapOptions options;
+
+  /// [SimpleMap] controller
   final SimpleMapController controller;
 
   @override
@@ -199,7 +202,10 @@ class _SimpleMapPainter extends CustomPainter {
     this.animation,
   ) : super(repaint: animation);
 
+  /// Painter animation
   final Animation? animation;
+
+  /// [SimpleMap] controller
   final SimpleMapController controller;
 
   @override
