@@ -18,7 +18,7 @@ Can be used as a presentation of online users, devices, etc.
 * Add this to your pubspec.yaml
   ```
   dependencies:
-  simple_map: ^0.1.0
+  simple_map: ^1.0.0
   ```
 * Get the package from Pub:
   ```
@@ -31,21 +31,34 @@ Can be used as a presentation of online users, devices, etc.
 
 ## Features
 
+* Good performance with lot of data
 * Render simple customizable flat map
 * Render points with animation effect
 * Customize every point
 * Create points with TTL
-* Good performance with lot of data
+* Custom point animations
+* Marker support
+* Zoom and Move animations
 
 ## Usage
 
 * Using SimpleMapOptions
 ```dart
 final mapOptions = SimpleMapOptions(
-    // You can use your own map image
-    mapAsset: 'assets/map.png',
+    // Custom map icon with projection
+    // mapIcon: IconData(0xe900, fontFamily: 'MapIcons'),
+    // projection: ...
+  
     mapColor: Colors.grey,
     bgColor: Colors.black,
+    // Default point color
+    pointColor: Colors.blue,
+    
+    interactive: true,
+    
+    // 3d effect
+    withShadow: true,
+    shadowOffset = const Offset(0.0, 0.5),
 );
 ```
 
@@ -83,7 +96,7 @@ SimpleMap(
 ),
 ```
 
-* Check out the complete [Example](https://github.com/tiamo/flutter-simple-map/tree/master/example)
+Check out the complete [Example](https://github.com/tiamo/flutter-simple-map/tree/master/example)
 
 ## Changelog
 
