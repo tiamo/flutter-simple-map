@@ -3,15 +3,15 @@
 Flutter plugin to display a simple flat world map with animated points in real time.
 Can be used as a presentation of online users, devices, etc.
 
-[![Build Status](https://travis-ci.org/tiamo/flutter-simple-map.svg?branch=master)](https://travis-ci.org/tiamo/flutter-simple-map)
+[![Build Status](https://github.com/tiamo/flutter-simple-map/actions/workflows/ci.yml/badge.svg)](https://github.com/tiamo/flutter-simple-map)
 [![Pub package](https://img.shields.io/pub/v/simple_map.svg)](https://pub.dartlang.org/packages/simple_map)
 [![Star on GitHub](https://img.shields.io/github/stars/tiamo/flutter-simple-map.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/tiamo/flutter-simple-map)
 [![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
 
-![1](https://github.com/tiamo/flutter-simple-map/raw/master/screens/1.gif)
-![2](https://github.com/tiamo/flutter-simple-map/raw/master/screens/2.gif)
-![3](https://github.com/tiamo/flutter-simple-map/raw/master/screens/3.gif)
-![4](https://github.com/tiamo/flutter-simple-map/raw/master/screens/4.gif)
+<img src="https://github.com/tiamo/flutter-simple-map/raw/main/screens/1.gif" width="200">
+<img src="https://github.com/tiamo/flutter-simple-map/raw/main/screens/2.gif" width="200">
+<img src="https://github.com/tiamo/flutter-simple-map/raw/main/screens/3.gif" width="200">
+<img src="https://github.com/tiamo/flutter-simple-map/raw/main/screens/4.gif" width="200">
 
 ## Getting Started
 
