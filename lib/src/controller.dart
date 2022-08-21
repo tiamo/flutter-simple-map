@@ -1,10 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/widgets.dart';
+import 'package:simple_map/simple_map.dart';
 
-import 'marker.dart';
-import 'options.dart';
-import 'point.dart';
 import 'projections/miller_projection.dart';
 import 'projections/projection.dart';
 
@@ -16,7 +14,6 @@ class SimpleMapController {
     this.shadowRatio = 1.5,
     this.shadowOpacity = 0.3,
     this.defaultPointTTL,
-    this.maxZoom = 7.0, // TODO: options
     this.radiusScaleFactors,
     this.glowRadius = 0.0,
     points,
@@ -28,7 +25,6 @@ class SimpleMapController {
   final double shadowRatio;
   final double shadowOpacity;
   final Duration? defaultPointTTL;
-  final double maxZoom;
   final double glowRadius;
 
   /// pointsSize > radiusFactor
@@ -42,11 +38,12 @@ class SimpleMapController {
   Color? _defaultPointColor;
   Color? _startPointColor;
   int _lastTimeMs = 0;
+  double _maxZoom = 0.0;
 
   Offset? _tCenter;
   double _tZoom = 0.0;
   Size _size = Size.zero;
-  State? _state;
+  State<SimpleMap>? _state;
 
   Animation<Offset>? _centerAnim;
   Animation<Offset>? _offsetAnim;
@@ -112,11 +109,15 @@ class SimpleMapController {
 
   void addMarker(SimpleMapMarker marker) {
     _markers.add(marker);
+    // TODO: refactory
+    // ignore: invalid_use_of_protected_member
     _state?.setState(() {});
   }
 
   bool removeMarker(SimpleMapMarker marker) {
     if (_markers.remove(marker)) {
+      // TODO: refactory
+      // ignore: invalid_use_of_protected_member
       _state?.setState(() {});
     }
     return false;
@@ -139,7 +140,7 @@ class SimpleMapController {
     double zoom = 10,
     Duration duration = const Duration(milliseconds: 1500),
   }) async {
-    _tZoom = min(maxZoom, zoom);
+    _tZoom = min(_maxZoom, zoom);
     _tCenter = project(lat, lng);
     _updateAnim();
     if (_transformAnimation != null) {
@@ -191,9 +192,10 @@ class SimpleMapController {
     required SimpleMapOptions options,
     Animation? animation,
     Animation? transformAnimation,
-    State? state,
+    State<SimpleMap>? state,
   }) {
     _state = state;
+    _maxZoom = options.maxZoom;
     _defaultPointColor = options.pointColor ?? _defaultPointColor;
     _startPointColor = options.startPointColor ?? _startPointColor;
     _projection = options.projection;
@@ -257,6 +259,10 @@ class SimpleMapController {
   /// based on the [size].
   ///
   void render(Canvas canvas, Size size) {
+    if (_state == null) {
+      throw Exception('Please use `controller.configure` before render.');
+    }
+
     var delta = 0.0;
     if (_animation != null) {
       final _newLastTimeMs =

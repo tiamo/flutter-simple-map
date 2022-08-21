@@ -20,6 +20,7 @@ class SimpleMapOptions {
     this.withShadow = true,
     this.shadowOffset = const Offset(0.0, 0.5),
     this.markerBuilder,
+    this.maxZoom = 7.0,
   });
 
   final SimpleMapProjection projection;
@@ -29,6 +30,7 @@ class SimpleMapOptions {
   final Color? pointColor;
   final Color? startPointColor;
   final Widget Function(SimpleMapMarker, Offset)? markerBuilder;
+  final double maxZoom;
 
   final bool interactive;
 
