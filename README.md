@@ -1,4 +1,4 @@
-# Flutter Simple Map
+# 🗺️ Flutter Simple Map
 
 A Flutter plugin, which displays a simple flat world map with animated dots, useful for real time data representation.
 Can be used as a presentation of online users, devices, etc.
@@ -28,14 +28,13 @@ Can be used as a presentation of online users, devices, etc.
 
 ## Features
 
-* Good performance with lot of data
-* Render simple customizable flat map
-* Render points with animation effect
-* Customize every point
-* Create points with TTL
-* Custom point animations
-* Marker support
-* Zoom and Move animations
+* 🚀 Good performance with lot of data
+* 🌎 Render simple customizable flat map
+* 🪄 Render points with animation effect
+* ✨ Customize every point
+* ⏱️ Create points with TTL
+* 📍 Marker support
+* 🔍 Zoom and Move animations
 
 ## Usage
 
